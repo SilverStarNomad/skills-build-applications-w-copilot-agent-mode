@@ -9,13 +9,18 @@ def api_root(request, format=None):
     if request.method == 'POST':
         return Response({"message": "POST request received"}, status=status.HTTP_201_CREATED)
 
-    base_url = 'http://[REPLACE-THIS-WITH-YOUR-CODESPACE-NAME]-8000.app.github.dev/'
+    # Dynamically determine the base URL for the API root
+    host = request.get_host()
+    scheme = 'https' if 'app.github.dev' in host else 'http'
+    # Always allow both codespace and localhost URLs in the response
+    codespace_url = 'https://silver-funicular-v65wg9rv54v7fp7pv-8000.app.github.dev/'
+    localhost_url = 'http://localhost:8000/'
     return Response({
-        'users': base_url + 'api/users/?format=api',
-        'teams': base_url + 'api/teams/?format=api',
-        'activities': base_url + 'api/activities/?format=api',
-        'leaderboard': base_url + 'api/leaderboard/?format=api',
-        'workouts': base_url + 'api/workouts/?format=api'
+        'users': [codespace_url + 'api/users/?format=api', localhost_url + 'api/users/?format=api'],
+        'teams': [codespace_url + 'api/teams/?format=api', localhost_url + 'api/teams/?format=api'],
+        'activities': [codespace_url + 'api/activities/?format=api', localhost_url + 'api/activities/?format=api'],
+        'leaderboard': [codespace_url + 'api/leaderboard/?format=api', localhost_url + 'api/leaderboard/?format=api'],
+        'workouts': [codespace_url + 'api/workouts/?format=api', localhost_url + 'api/workouts/?format=api']
     })
 
 class UserViewSet(viewsets.ModelViewSet):
