@@ -24,7 +24,12 @@ SECRET_KEY = "django-insecure-*m6h-qpbzgt@iysqc43x97*%9=u9a!zn6=qlhfs+m=9roqd25)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'silver-funicular-v65wg9rv54v7fp7pv-8000.app.github.dev',
+    # Add more hostnames as needed
+]
 
 # Application definition
 INSTALLED_APPS = [
@@ -125,6 +130,3 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ]
 }
-
-# Codespace Django REST API endpoint suffix for use in views or other settings
-CODESPACE_SUFFIX = "silver-funicular-v65wg9rv54v7fp7pv"
