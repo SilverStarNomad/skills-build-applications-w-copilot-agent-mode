@@ -125,3 +125,6 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.AllowAny',
     ]
 }
+
+# Codespace Django REST API endpoint suffix for use in views or other settings
+CODESPACE_SUFFIX = "silver-funicular-v65wg9rv54v7fp7pv"
